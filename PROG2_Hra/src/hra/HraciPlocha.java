@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import obrazek.ManazerObrazku;
 import obrazek.Obrazek;
 import obrazek.ZdojObrazkuSoubor;
 import obrazek.ZdrojObrazku;
@@ -54,43 +55,13 @@ public class HraciPlocha extends JPanel {
 	private boolean hraBezi = false;
 	private int posunPozadiX = 0;
 
-	public HraciPlocha() {
-		//TODO
-		ZdojObrazkuSoubor z = new ZdojObrazkuSoubor();
-		z.naplnMapu();
-		z.setZdroj(Obrazek.POZADI.getKlic());
+	public HraciPlocha(ManazerObrazku mo) {
 		
-		try {
-			imgPozadi = z.getObrazek();
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-
-		z.setZdroj(Obrazek.HRAC.getKlic());
-		BufferedImage imgHrac;
-		//hrac = new Hrac(null);
-		try {
-			imgHrac = z.getObrazek();
-			hrac = new Hrac(imgHrac);
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		z.setZdroj(Obrazek.ZED.getKlic());
-		BufferedImage imgZed;
-		
-		try {
-			imgZed = z.getObrazek();
-			Zed.setObrazek(imgZed);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		imgPozadi = mo.getObrazek(Obrazek.POZADI);
+		hrac = new Hrac(mo.getObrazek(Obrazek.HRAC));
+		Zed.setObrazek(mo.getObrazek(Obrazek.ZED));
 		
 		seznamZdi = new SeznamZdi();
-		
 		
 		vyrobFontyALabely();
 	}
