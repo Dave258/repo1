@@ -11,12 +11,14 @@ import javax.swing.SwingWorker;
 import hra.HraciPlocha;
 import obrazek.ManazerObrazku;
 import obrazek.ZdojObrazkuSoubor;
+import obrazek.ZdrojObrazkuURL;
 
 public class FlappyFimHlavniApp extends JFrame {
 	private ManazerObrazku mo;
 		
 	public FlappyFimHlavniApp() {
-		mo = new ManazerObrazku(new ZdojObrazkuSoubor());
+		mo = new ManazerObrazku(new ZdrojObrazkuURL());
+		//mo = new ManazerObrazku(new ZdojObrazkuSoubor());
 	}
 	
 	public void initGUI(){
